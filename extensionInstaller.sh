@@ -16,7 +16,7 @@
 # ./extensionInstaller ms-dotnettools.csharp.2.74.24 5
 
 if [ -z "$1" ]; then
-    echo "Usage: $0 publisher.extension.version [platform_number]"
+    echo "⚠️ Usage: $0 publisher.extension.version [platform_number]"
     exit 1
 fi
 
@@ -64,13 +64,13 @@ else
 fi
 
 # Downloading using the platform parameter
-echo "Downloading from: $url"
+echo "⬇️ Downloading from: $url"
 curl -sSL "$url" --compressed -H 'User-Agent: Visual Studio Code' -o "$output_dir/$filename"
 
 # We try installing, if it fails we use the other url
 codium --install-extension "$output_dir/$filename"
 if [ $? -ne 0 ] && [ -n "$target_platform" ]; then
-    echo "Installation failed. Retrying without platform target..."
+    echo "⚠️ Installation failed. Retrying without platform target..."
     curl -sSL "$base_url" --compressed -H 'User-Agent: Visual Studio Code' -o "$output_dir/$filename"
     codium --install-extension "$output_dir/$filename"
 fi

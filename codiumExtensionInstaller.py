@@ -66,10 +66,10 @@ def main(file_path):
 
     project_driver = os.path.join(os.getcwd(), "driver", "geckodriver")
     if os.path.isfile(project_driver) and os.access(project_driver, os.X_OK):
-        print(f"Using local geckodriver at {project_driver}")
+        print(f"Using local geckodriver at {project_driver} :)")
         service = FirefoxService(executable_path=project_driver)
     else:
-        print("Local geckodriver not found or not executable, downloading via GeckoDriverManager")
+        print("⚠️ Local geckodriver not found or not executable, downloading via GeckoDriverManager")
         path = GeckoDriverManager().install()
         service = FirefoxService(path)
     driver = webdriver.Firefox(service=service, options=options)
@@ -86,7 +86,7 @@ def main(file_path):
             print(line)
             output_lines.append(line)
         else:
-            print(f"Failed to extract info from: {url}")
+            print(f"⚠️ Failed to extract info from: {url}")
 
     driver.quit()
 
@@ -107,6 +107,6 @@ def main(file_path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python vs_extension_info_batch.py urls.txt")
+        print("⚠️ Usage: python vs_extension_info_batch.py urls.txt")
         sys.exit(1)
     main(sys.argv[1])
